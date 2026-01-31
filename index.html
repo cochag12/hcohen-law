@@ -75,7 +75,7 @@ section { padding: 80px 20px; }
 .team-card h3 { color: var(--primary); margin-bottom: 10px; font-size: 1.6rem; }
 .team-card .title { font-size: 1rem; color: var(--primary); margin-bottom: 20px; font-weight: 600; }
 .team-card .bio { line-height: 1.9; color: rgba(255,255,255,0.8); text-align: justify; font-size: 0.95rem; }
-@media (max-width: 900px) { .team-card { grid-template-columns: 1fr; } .team-card img { height: 280px; } .team-card-content { padding: 25px; } .team-card h3 { font-size: 1.4rem; } }
+@media (max-width: 900px) { .team-card { grid-template-columns: 1fr; } .team-card img { height: auto; max-height: 500px; object-fit: contain; object-position: center center; } .team-card-content { padding: 25px; } .team-card h3 { font-size: 1.4rem; } }
 .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 .service-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; transition: all 0.3s; }
 .service-card:hover { border-color: var(--primary); }
