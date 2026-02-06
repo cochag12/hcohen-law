@@ -116,10 +116,16 @@ section { padding: 80px 20px; }
 .form-message.error { display: block; background: rgba(239,68,68,0.1); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
 /* Cookie Banner */
 #cookie-banner { position: fixed; bottom: 0; width: 100%; background: #1a1a2e; color: white; padding: 20px; text-align: center; border-top: 2px solid #d4af37; z-index: 9999; display: none; box-shadow: 0 -5px 30px rgba(0,0,0,0.3); }
-#cookie-banner p { margin-bottom: 15px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto; }
-#cookie-banner a { color: #d4af37; text-decoration: underline; margin: 0 5px; }
-#cookie-banner button { background: #d4af37; color: #1a1a2e; border: none; padding: 12px 30px; cursor: pointer; font-weight: bold; margin: 5px; border-radius: 5px; transition: all 0.3s; }
+#cookie-banner p { margin-bottom: 15px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto; font-size: 0.95rem; }
+#cookie-banner a { color: #d4af37; text-decoration: underline; margin: 0 5px; display: inline-block; padding: 4px 6px; min-height: 32px; line-height: 24px; }
+#cookie-banner button { background: #d4af37; color: #1a1a2e; border: none; padding: 12px 30px; cursor: pointer; font-weight: bold; margin: 5px; border-radius: 5px; transition: all 0.3s; font-size: 1rem; min-height: 44px; }
 #cookie-banner button:hover { transform: scale(1.05); background: #f4d03f; }
+@media (max-width: 768px) {
+    #cookie-banner { padding: 15px 10px; }
+    #cookie-banner p { font-size: 0.85rem; margin-bottom: 12px; }
+    #cookie-banner button { display: block; width: calc(100% - 20px); max-width: 300px; margin: 8px auto; padding: 14px 20px; font-size: 0.95rem; }
+    #cookie-banner strong { font-size: 1rem; }
+}
 /* Legal Modals */
 .legal-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; overflow-y: auto; }
 .legal-modal.show { display: flex; }
@@ -128,12 +134,26 @@ section { padding: 80px 20px; }
 .legal-content h3 { color: var(--primary); margin: 25px 0 15px; font-size: 1.3rem; }
 .legal-content p, .legal-content li { line-height: 1.9; margin-bottom: 15px; color: rgba(255,255,255,0.85); }
 .legal-content ul { margin: 15px 0 15px 25px; }
-.legal-close { position: absolute; top: 20px; left: 20px; background: #ef4444; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+.legal-close { position: absolute; top: 20px; left: 20px; background: #ef4444; color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; transition: all 0.3s; z-index: 10; }
 .legal-close:hover { background: #dc2626; transform: scale(1.1); }
+@media (max-width: 768px) {
+    .legal-modal { padding: 10px; align-items: flex-start; }
+    .legal-content { width: 100%; max-width: 100%; max-height: 95vh; padding: 50px 20px 30px; margin: 10px auto; border-radius: 10px; }
+    .legal-content h2 { font-size: 1.5rem; margin-bottom: 20px; padding-right: 40px; }
+    .legal-content h3 { font-size: 1.1rem; margin: 20px 0 12px; }
+    .legal-content p, .legal-content li { font-size: 0.9rem; line-height: 1.7; }
+    .legal-close { top: 15px; left: 15px; width: 36px; height: 36px; font-size: 1.3rem; }
+}
 .privacy-checkbox { display: flex; align-items: flex-start; gap: 10px; margin: 20px 0; padding: 15px; background: rgba(212,175,55,0.1); border: 1px solid rgba(212,175,55,0.3); border-radius: 8px; }
 .privacy-checkbox input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; cursor: pointer; flex-shrink: 0; accent-color: var(--primary); }
 .privacy-checkbox label { cursor: pointer; font-size: 0.9rem; line-height: 1.6; }
 .privacy-checkbox a { color: var(--primary); text-decoration: underline; font-weight: 600; }
+@media (max-width: 768px) {
+    .privacy-checkbox { padding: 12px; margin: 15px 0; gap: 8px; }
+    .privacy-checkbox input[type="checkbox"] { width: 22px; height: 22px; min-width: 22px; margin-top: 0; }
+    .privacy-checkbox label { font-size: 0.85rem; line-height: 1.5; }
+    .privacy-checkbox a { display: inline-block; padding: 2px 0; }
+}
 footer { background: rgba(0,0,0,0.5); padding: 50px 20px 25px; }
 .footer-content { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
 .footer-section h4 { color: var(--primary); margin-bottom: 20px; }
@@ -143,6 +163,44 @@ footer { background: rgba(0,0,0,0.5); padding: 50px 20px 25px; }
 .social-links { display: flex; gap: 15px; margin-top: 15px; }
 .social-links a { width: 40px; height: 40px; background: var(--primary); color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s; }
 .social-links a:hover { transform: scale(1.1); }
+/* Additional Mobile Optimizations */
+@media (max-width: 768px) {
+    /* Prevent auto-zoom on input focus */
+    input, textarea, select {
+        font-size: 16px !important;
+    }
+    /* Better touch targets */
+    button, a, input[type="submit"], input[type="button"] {
+        min-height: 44px;
+    }
+    /* Cookie banner mobile */
+    #cookie-banner {
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    /* Legal modals scroll improvement */
+    .legal-modal {
+        -webkit-overflow-scrolling: touch;
+    }
+    .legal-content {
+        -webkit-overflow-scrolling: touch;
+    }
+    /* Footer links spacing */
+    .footer-bottom a {
+        display: inline-block;
+        margin: 5px 8px !important;
+    }
+}
+/* Landscape mobile orientation */
+@media (max-width: 896px) and (orientation: landscape) {
+    #cookie-banner {
+        max-height: 60vh;
+    }
+    .legal-content {
+        max-height: 85vh;
+        padding: 40px 25px 25px;
+    }
+}
 </style>
 </head>
 <body>
@@ -246,9 +304,9 @@ footer { background: rgba(0,0,0,0.5); padding: 50px 20px 25px; }
 </div>
 <div class="footer-bottom">
 © 2026 ח. כהן - משרד עורכי דין | כל הזכויות שמורות<br>
-<a href="#" onclick="openA11yStatement(); return false;" style="color: var(--primary); margin: 0 10px;">הצהרת נגישות</a> | 
-<a href="#" onclick="openLegalModal('privacy'); return false;" style="color: var(--primary); margin: 0 10px;">מדיניות פרטיות</a> | 
-<a href="#" onclick="openLegalModal('terms'); return false;" style="color: var(--primary); margin: 0 10px;">תנאי שימוש</a>
+<a href="#" onclick="openA11yStatement(); return false;" style="color: var(--primary); margin: 0 10px; display: inline-block; padding: 8px 4px; min-height: 44px; line-height: 28px;">הצהרת נגישות</a> | 
+<a href="#" onclick="openLegalModal('privacy'); return false;" style="color: var(--primary); margin: 0 10px; display: inline-block; padding: 8px 4px; min-height: 44px; line-height: 28px;">מדיניות פרטיות</a> | 
+<a href="#" onclick="openLegalModal('terms'); return false;" style="color: var(--primary); margin: 0 10px; display: inline-block; padding: 8px 4px; min-height: 44px; line-height: 28px;">תנאי שימוש</a>
 <p style="font-size: 0.85em; margin-top: 15px; opacity: 0.7;">המידע באתר זה אינו מהווה ייעוץ משפטי או תחליף לו</p>
 </div>
 </footer>
@@ -556,6 +614,9 @@ function openLegalModal(type) {
         document.getElementById("termsModal").classList.add("show");
     }
     document.body.style.overflow = "hidden"; // מניעת גלילה ברקע
+    // מניעת בעיות גלילה במובייל
+    document.body.style.position = "fixed";
+    document.body.style.width = "100%";
 }
 
 function closeLegalModal(type) {
@@ -565,6 +626,8 @@ function closeLegalModal(type) {
         document.getElementById("termsModal").classList.remove("show");
     }
     document.body.style.overflow = "auto"; // החזרת גלילה
+    document.body.style.position = "";
+    document.body.style.width = "";
 }
 
 // Close modals when clicking outside content
@@ -572,7 +635,19 @@ document.addEventListener("click", function(e) {
     if (e.target.classList.contains("legal-modal")) {
         e.target.classList.remove("show");
         document.body.style.overflow = "auto";
+        document.body.style.position = "";
+        document.body.style.width = "";
     }
+});
+
+// Prevent closing when clicking inside modal content
+document.addEventListener("DOMContentLoaded", function() {
+    var modalContents = document.querySelectorAll(".legal-content");
+    modalContents.forEach(function(content) {
+        content.addEventListener("click", function(e) {
+            e.stopPropagation();
+        });
+    });
 });
 
 // Initialize cookie banner on page load
