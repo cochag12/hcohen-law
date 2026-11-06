@@ -525,16 +525,12 @@ function submitForm(e) {
   e.preventDefault();
   var form = document.getElementById("contactForm");
   var msg = document.getElementById("formMessage");
-  var data = {
-    name: form.name.value,
-    phone: form.phone.value,
-    email: form.email.value,
-    subject: form.subject.value,
-    message: form.message.value
-  };
+  var subject = "פנייה מהאתר - " + form.subject.value + " - " + form.name.value;
+  var body = "שם: " + form.name.value + "\nטלפון: " + form.phone.value + "\nדוא\"ל: " + form.email.value + "\nנושא: " + form.subject.value + "\n\n" + form.message.value;
+  window.location.href = "mailto:cochag@gmail.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
   msg.className = "form-message success";
-  msg.textContent = "תודה על פנייתך! ניצור איתך קשר בהקדם.";
-  form.reset();
+  msg.innerHTML = "נפתחה תוכנת הדואר שלך עם הפנייה - יש ללחוץ שם על &quot;שלח&quot;. אם היא לא נפתחה, אפשר להתקשר: <a href=\"tel:+97236141120\">03-6141120</a> או <a href=\"tel:+972524268038\">052-4268038</a>.";
+  return false;
 }
 const COOKIE_CONSENT_VERSION = "1.0";
 const ANALYTICS_ID = "";
