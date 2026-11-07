@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cochag12.github.io/hcohen-law/sitemap.xml
