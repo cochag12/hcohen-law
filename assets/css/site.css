@@ -193,6 +193,19 @@ svg.icon { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; st
 .home-intro h1 { font-size: clamp(2rem, 3.6vw, 2.6rem); margin-bottom: .25em; }
 .home-intro .tagline { display: block; font-size: clamp(1.15rem, 1.8vw, 1.35rem); font-weight: 500; color: var(--navy-700); margin: .35rem 0 1.5rem; }
 .home-intro p { max-width: var(--text); }
+.intro-photo, .contact-photo { margin: 0; }
+.intro-photo img, .contact-photo img { display: block; width: 100%; height: auto; object-fit: cover; border: 1px solid var(--line); }
+.intro-photo figcaption, .contact-photo figcaption { margin-top: .5rem; font-size: .88rem; color: var(--muted); }
+.home-intro .intro-photo { margin-top: 2rem; }
+.intro-photo img { aspect-ratio: 16 / 10; object-position: 50% 32%; }
+@media (min-width: 900px) {
+  .home-intro { display: grid; grid-template-columns: minmax(0, 1fr) 19rem; gap: 3.5rem; align-items: start; }
+  .home-intro .intro-photo { margin-top: .4rem; }
+  .intro-photo img { aspect-ratio: 4 / 5; object-position: 50% 50%; }
+}
+.contact-photo { margin-top: 1.75rem; }
+.contact-photo img { aspect-ratio: 16 / 10; object-position: 50% 32%; }
+@media (min-width: 900px) { .contact-photo img { aspect-ratio: 4 / 5; object-position: 50% 50%; } }
 
 /* practice areas list */
 .area-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0 2.5rem; }
