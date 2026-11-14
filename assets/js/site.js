@@ -123,6 +123,16 @@
     });
   });
 
+  /* ---- article: copy suggested citation ---- */
+  document.querySelectorAll('[data-copy-cite]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var box = b.closest('.cite-box'), txt = box.querySelector('.cite-text').textContent, st = box.querySelector('.cite-status');
+      var ok = function () { st.textContent = 'האזכור הועתק'; };
+      var fail = function () { st.textContent = 'לא ניתן להעתיק - סמנו את הטקסט והעתיקו'; };
+      if (navigator.clipboard) navigator.clipboard.writeText(txt).then(ok, fail); else fail();
+    });
+  });
+
   /* ---- contact form ---- */
   var form = document.getElementById('contact-form');
   if (form) {
