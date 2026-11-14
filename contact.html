@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; connect-src 'self'; frame-src 'none'; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <title>צור קשר | ח. כהן - משרד עורכי דין, רמת גן</title>
 <meta name="description" content="ח. כהן - משרד עורכי דין, דרך בן גוריון 2, רמת גן (מגדלי ב.ס.ר, קומה 9). טלפון: 077-7741818, פקס: 077-7741811.">
@@ -24,8 +25,8 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/frank-ruhl-libre-hebrew-2.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/assistant-hebrew-0.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=f554d166eb">
-<script src="assets/js/a11y-init.js?v=f554d166eb"></script>
+<link rel="stylesheet" href="assets/css/site.css?v=4175311e8f">
+<script src="assets/js/a11y-init.js?v=4175311e8f"></script>
 <meta name="icons" content="assets/img/icons.svg">
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "LegalService", "@id": "https://cochag12.github.io/hcohen-law/#org", "name": "ח. כהן - משרד עורכי דין", "alternateName": "H. COHEN LAW FIRM", "legalName": "ח. כהן חברת עורכי דין", "url": "https://cochag12.github.io/hcohen-law/", "logo": "https://cochag12.github.io/hcohen-law/assets/img/apple-touch-icon.png", "image": "https://cochag12.github.io/hcohen-law/assets/img/og-cover.jpg", "telephone": "+97277741818", "faxNumber": "+97277741811", "email": "cochag@gmail.com", "foundingDate": "2001", "areaServed": {"@type": "Country", "name": "ישראל"}, "address": {"@type": "PostalAddress", "streetAddress": "דרך בן גוריון 2, מגדלי ב.ס.ר, קומה 9", "addressLocality": "רמת גן", "addressCountry": "IL"}, "knowsAbout": ["שירותי דת וקבורה", "דיני עבודה במגזר הציבורי", "משפט מנהלי", "מכרזים והתקשרויות", "רגולציה וכשרות", "אכיפת חיובים עבור רשויות ותאגידי מים", "מועצות דתיות", "חברות קדישא"], "founder": {"@type": "Person", "name": "חגי פ. כהן", "jobTitle": "עורך דין ונוטריון"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "דף הבית", "item": "https://cochag12.github.io/hcohen-law/"}, {"@type": "ListItem", "position": 2, "name": "צור קשר"}]}]}</script>
 <meta name="site-config" content="{&quot;email&quot;: &quot;cochag@gmail.com&quot;, &quot;phone&quot;: &quot;077-7741818&quot;, &quot;phone_intl&quot;: &quot;+97277741818&quot;, &quot;ga4&quot;: &quot;&quot;, &quot;base&quot;: &quot;&quot;, &quot;form&quot;: &quot;mailto&quot;}">
@@ -72,7 +73,7 @@
       <h2>פנייה למשרד</h2>
       <p class="note">המשרד מייצג מועצות דתיות, רשויות וגופים ציבוריים. אם פנייתכם נוגעת לגוף כזה, ייתכן שלא נוכל לטפל בה - אנא אל תפרטו עובדות עד שנחזור אליכם.</p>
       <p class="muted">שדות המסומנים ב-<span class="req" aria-hidden="true">*</span> הם שדות חובה.</p>
-      <form id="contact-form" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+      <form id="contact-form" name="contact" method="POST" action="/">
         <input type="hidden" name="form-name" value="contact">
         <input type="hidden" name="consent_at" value="">
         <p class="hp" aria-hidden="true"><label>לא למלא: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
@@ -120,7 +121,8 @@
         </div>
         <div class="field">
           <label for="f-message">הודעה</label>
-          <textarea id="f-message" name="message" rows="5"></textarea>
+          <p class="field-hint" id="hint-message">תיאור קצר בלבד, בלי שמות צדדים, מספרי תיק או מסמכים. אין לשלוח מידע או מסמכים חסויים לפני שנוצרה התקשרות ונבדק ניגוד עניינים.</p>
+          <textarea id="f-message" name="message" rows="5" aria-describedby="hint-message"></textarea>
         </div>
         <details class="notice" open>
           <summary>מה נעשה בפרטים שתמסרו</summary>
@@ -137,9 +139,10 @@
           <label for="f-consent">אני מסכים/ה שהמשרד ישמור את הפרטים כדי לחזור אליי ולבדוק ניגוד עניינים, ושהם יישמרו אצל ספקי השירות המפורטים למעלה, גם מחוץ לישראל. <span class="req" aria-hidden="true">*</span></label>
         </div>
         <p class="field-error consent-error" id="err-consent"></p>
-        <button type="submit" class="btn">שליחת הפנייה</button>
+        <noscript><p class="note">שליחת הטופס דורשת JavaScript. אפשר לפנות ישירות בטלפון 077-7741818 או בדוא"ל cochag@gmail.com.</p></noscript>
+        <button type="submit" class="btn" disabled>שליחת הפנייה</button>
         <div id="form-status" class="form-status" role="status" tabindex="-1"></div>
-        <p class="disclaimer mt-1">פנייה דרך האתר או בדוא"ל אינה יוצרת יחסי עורך דין-לקוח. אין לשלוח בטופס או בדוא"ל מסמכים או מידע רגיש או סודי לפני שנוצרה התקשרות.</p>
+        <p class="disclaimer mt-1">פנייה דרך האתר או בדוא"ל אינה יוצרת יחסי עורך דין-לקוח.</p>
       </form>
     </div>
   </div>
@@ -167,6 +170,6 @@
     <div class="footer-bottom"><span>© 2026 ח. כהן חברת עורכי דין · ח.פ. 514195312</span><span>המידע באתר אינו מהווה ייעוץ משפטי ואינו תחליף לו.</span></div>
   </div>
 </footer>
-<script src="assets/js/site.js?v=f554d166eb" defer></script>
+<script src="assets/js/site.js?v=4175311e8f" defer></script>
 </body>
 </html>

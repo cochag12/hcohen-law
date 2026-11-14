@@ -314,6 +314,7 @@ h1, h2, h3 { text-wrap: balance; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: 3px solid var(--gold-600); outline-offset: 2px; border-color: var(--navy-700); }
 .field [aria-invalid="true"] { border-color: var(--danger); }
 .field-error { color: var(--danger); font-size: .92rem; margin: .35rem 0 0; display: none; }
+.field-hint { margin: .1rem 0 .4rem; font-size: .92rem; color: var(--muted); }
 .field-error.show { display: block; }
 .notice { background: var(--soft); border: 1px solid var(--line); padding: .25rem 1rem; margin: 0 0 1rem; font-size: .95rem; }
 .notice summary { cursor: pointer; font-weight: 700; padding: .6rem 0; min-height: 2.75rem; }

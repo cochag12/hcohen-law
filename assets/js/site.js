@@ -102,17 +102,6 @@
     });
   });
 
-  /* ---- map: loads Google only when asked (no third-party cookies before that) ---- */
-  document.querySelectorAll('[data-map-src]').forEach(function (b) {
-    b.addEventListener('click', function () {
-      var f = document.createElement('iframe');
-      f.src = b.getAttribute('data-map-src'); f.title = 'מפה: מגדלי ב.ס.ר, רמת גן'; f.loading = 'lazy';
-      f.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups');
-      b.parentNode.replaceChild(f, b);
-      f.setAttribute('tabindex', '0'); f.focus();
-    });
-  });
-
   /* ---- share: copy link ---- */
   document.querySelectorAll('[data-copy-link]').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -138,7 +127,10 @@
   if (form) {
     form.noValidate = true;
     var params = new URLSearchParams(location.search);
-    if (params.get('topic') && form.topic) form.topic.value = params.get('topic');
+    var wanted = params.get('topic');   /* only a value that exists in the list - anything else would leave no option selected */
+    if (wanted && form.topic && [].some.call(form.topic.options, function (o) { return o.value === wanted; })) form.topic.value = wanted;
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) submitBtn.disabled = false;   /* the button ships disabled so a no-JS visitor cannot POST personal data to the host */
     var status = document.getElementById('form-status');
     function setErr(field, msg) {
       var el = form.querySelector('[name="' + field + '"]');
@@ -161,16 +153,18 @@
       if (CFG.form === 'mailto') {
         /* no form backend on this host: hand the inquiry to the visitor's mail app */
         var v = function (n) { return form.elements[n] && form.elements[n].value ? form.elements[n].value.trim() : ''; };
-        var topic = form.topic ? form.topic.options[form.topic.selectedIndex].text : '';
-        var head = ['שם: ' + v('name'), 'טלפון: ' + v('phone')];
+        var topic = form.topic && form.topic.selectedIndex >= 0 ? form.topic.options[form.topic.selectedIndex].text : '';
+        var head = ['(נא לא לצרף מסמכים ולא לפרט שמות צדדים או מספרי תיק לפני שנוצרה התקשרות)', '', 'שם: ' + v('name'), 'טלפון: ' + v('phone')];
         if (v('org')) head.push('גוף / ארגון: ' + v('org'));
         if (v('role')) head.push('תפקיד: ' + v('role'));
         if (v('email')) head.push('דוא"ל: ' + v('email'));
         head.push('נושא: ' + topic);
-        var build = function (m) { return 'mailto:' + (CFG.email || '') + '?subject=' + encodeURIComponent('פנייה מהאתר - ' + topic) + '&body=' + encodeURIComponent(head.join('\n') + (m ? '\n\n' + m : '')); };
+        /* the mail's own timestamp records when the privacy notice was accepted */
+        var consentLine = '\n\n---\nקראתי את הודעת הפרטיות שבטופס ואני מסכים/ה לשמירת הפרטים לצורך מענה ובדיקת ניגוד עניינים.';
+        var build = function (m) { return 'mailto:' + (CFG.email || '') + '?subject=' + encodeURIComponent('פנייה מהאתר - ' + topic) + '&body=' + encodeURIComponent(head.join('\n') + (m ? '\n\n' + m : '') + consentLine); };
         var msg = v('message'), url = build(msg);
         while (url.length > 1900 && msg.length > 0) { msg = msg.slice(0, Math.max(0, msg.length - 100)); url = build(msg + '... (ההודעה קוצרה - אפשר להשלים כאן)'); }
-        (window.__openMail || function (u) { window.location.href = u; })(url);   /* hook lets a test capture the link */
+        window.location.href = url;
         status.className = 'form-status ok';
         status.innerHTML = 'נפתחה תוכנת הדואר שלכם עם הפנייה - יש ללחוץ שם על "שלח". אם היא לא נפתחה, אפשר לכתוב אל <a href="mailto:' + (CFG.email || '') + '">' + (CFG.email || '') + '</a> או להתקשר <a href="tel:' + (CFG.phone_intl || '') + '">' + (CFG.phone || '') + '</a>.';
         status.focus();
