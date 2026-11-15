@@ -634,3 +634,101 @@ html.a11y-contrast .contact-grid { background: #fff !important; color: #000 !imp
 html.a11y-contrast .contact-grid * { color: #000 !important; }
 html.a11y-contrast .contact-grid .field input, html.a11y-contrast .contact-grid .field select, html.a11y-contrast .contact-grid .field textarea { background: #fff; border-color: #000; }
 @media print { .contact-grid { background: #fff !important; color: #000 !important; } }
+
+/* ==================== a little lighter - HOME PAGE ONLY (owner, 2026-11-15) ====================
+   Other pages keep the published colours (owner: "only the home page"). */
+.page-index .site-header, .page-index .site-footer, .page-index .home-hero { background: var(--navy-800); }
+@media (max-width: 860px) { .page-index .main-nav { background: var(--navy-800); } }
+.page-index .band-dark { background: var(--navy-700); }
+.page-index .hero-photo::after { background: linear-gradient(180deg, rgba(22, 41, 74, .62) 0%, rgba(22, 41, 74, .42) 45%, rgba(22, 41, 74, .78) 100%); }
+@media (min-width: 900px) { .page-index .hero-photo::after { background: linear-gradient(180deg, rgba(22, 41, 74, .62) 0%, rgba(22, 41, 74, .42) 45%, rgba(22, 41, 74, .78) 100%); } }
+.hero-kicker, .home-hero h1, .home-hero .tagline, .hero-links a { text-shadow: 0 1px 14px rgba(8, 16, 32, .6); }
+/* home page only: a brighter, sky-blue tone instead of navy for the opening and the practice band (owner, 2026-11-15) */
+.page-index .home-hero { background: #234C78; }
+.page-index .hero-photo::after { background: linear-gradient(180deg, rgba(43, 92, 143, .55) 0%, rgba(43, 92, 143, .34) 45%, rgba(35, 76, 120, .74) 100%); }
+@media (min-width: 900px) { .page-index .hero-photo::after { background: linear-gradient(180deg, rgba(43, 92, 143, .55) 0%, rgba(43, 92, 143, .34) 45%, rgba(35, 76, 120, .74) 100%); } }
+.page-index .band-dark { background: linear-gradient(180deg, #2B5C8F 0%, #234C78 100%); --muted: #DCE6F2; }
+.page-index .band-dark .area-list p, .page-index .band-dark .muted { color: #DCE6F2; }
+.page-index .band-dark .area-list li { border-bottom-color: rgba(255, 255, 255, .22); }
+.page-index .band-dark .more, .page-index .band-dark .area-list li::before { color: #F3E2B8; }
+.page-index .band-dark h2::after { background: #F3E2B8; }
+.page-index .band-dark :focus-visible { outline-color: #F3E2B8; }
+/* home page only: sunset palette - warm sand-gold sky at the top fading into sea blue (owner's reference, 2026-11-15) */
+.page-index .home-hero { background: #1E3A5F; }
+.page-index .hero-photo::after { background: linear-gradient(180deg, rgba(176, 146, 90, .72) 0%, rgba(142, 125, 104, .44) 30%, rgba(62, 90, 126, .40) 62%, rgba(24, 50, 86, .86) 100%); }
+@media (min-width: 900px) { .page-index .hero-photo::after { background: linear-gradient(180deg, rgba(176, 146, 90, .72) 0%, rgba(142, 125, 104, .44) 30%, rgba(62, 90, 126, .40) 62%, rgba(24, 50, 86, .86) 100%); } }
+.page-index .hero-kicker { color: #FFF1CF; text-shadow: 0 1px 16px rgba(60, 40, 10, .55); }
+.page-index .hero-ornament::before { background: linear-gradient(270deg, transparent, #FFF1CF); }
+.page-index .hero-ornament::after { background: linear-gradient(90deg, transparent, #FFF1CF); }
+.page-index .hero-ornament i { background: #FFF1CF; }
+.page-index .band-dark { background: linear-gradient(180deg, #1F3D63 0%, #1A3354 100%); --muted: #D5DEEA; }
+.page-index .band-dark .area-list p, .page-index .band-dark .muted { color: #D5DEEA; }
+.page-index .band-dark .area-list li { border-bottom-color: rgba(226, 198, 140, .28); }
+.page-index .band-dark .more, .page-index .band-dark .area-list li::before { color: #E2C68C; }
+.page-index .band-dark h2::after { background: #E2C68C; }
+.page-index .band-dark :focus-visible { outline-color: #E2C68C; }
+/* home page only: a sunrise glow behind the title (owner: "יש בזה סוג של זריחה") */
+.page-index .hero-photo::after, .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 0%, rgba(255, 212, 140, .55) 0%, rgba(255, 212, 140, 0) 70%),
+    linear-gradient(180deg, rgba(176, 146, 90, .66) 0%, rgba(142, 125, 104, .40) 30%, rgba(62, 90, 126, .40) 62%, rgba(24, 50, 86, .86) 100%);
+}
+@media (min-width: 900px) { .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(255, 212, 140, .55) 0%, rgba(255, 212, 140, 0) 70%),
+    linear-gradient(180deg, rgba(176, 146, 90, .66) 0%, rgba(142, 125, 104, .40) 30%, rgba(62, 90, 126, .40) 62%, rgba(24, 50, 86, .86) 100%);
+} }
+/* home page only: a brighter sunrise - warm orange-gold sun behind the title, less grey haze (owner, 2026-11-15) */
+.page-index .hero-photo::after, .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 55% 48% at 50% 6%, rgba(255, 228, 165, .80) 0%, rgba(255, 196, 120, .48) 38%, rgba(255, 180, 110, 0) 72%),
+    linear-gradient(180deg, rgba(236, 170, 92, .52) 0%, rgba(222, 168, 116, .32) 30%, rgba(96, 126, 166, .26) 62%, rgba(24, 50, 86, .80) 100%);
+}
+@media (min-width: 900px) { .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 48% 52% at 50% 4%, rgba(255, 228, 165, .80) 0%, rgba(255, 196, 120, .48) 38%, rgba(255, 180, 110, 0) 72%),
+    linear-gradient(180deg, rgba(236, 170, 92, .52) 0%, rgba(222, 168, 116, .32) 30%, rgba(96, 126, 166, .26) 62%, rgba(24, 50, 86, .80) 100%);
+} }
+.page-index .hero-kicker { color: #fff; text-shadow: 0 1px 3px rgba(70, 40, 5, .55), 0 0 18px rgba(90, 50, 10, .45); }
+.page-index .home-hero h1 { text-shadow: 0 2px 4px rgba(30, 20, 10, .45), 0 0 26px rgba(40, 25, 10, .45); }
+.page-index .home-hero .tagline, .page-index .hero-links a { text-shadow: 0 1px 3px rgba(20, 20, 30, .6), 0 0 16px rgba(20, 30, 50, .5); }
+/* home page only: a clear, brighter blue sky instead of the warm sunrise (owner, 2026-11-15) */
+.page-index .home-hero { background: #2F6DB0; }
+.page-index .hero-photo::after, .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 52% 46% at 50% 0%, rgba(255, 255, 255, .30) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, rgba(78, 156, 230, .60) 0%, rgba(104, 168, 228, .38) 34%, rgba(58, 118, 190, .36) 64%, rgba(20, 62, 118, .84) 100%);
+}
+@media (min-width: 900px) { .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 46% 50% at 50% 0%, rgba(255, 255, 255, .30) 0%, rgba(255, 255, 255, 0) 70%),
+    linear-gradient(180deg, rgba(78, 156, 230, .60) 0%, rgba(104, 168, 228, .38) 34%, rgba(58, 118, 190, .36) 64%, rgba(20, 62, 118, .84) 100%);
+} }
+.page-index .hero-kicker { color: #fff; text-shadow: 0 1px 3px rgba(10, 35, 70, .6), 0 0 18px rgba(10, 35, 70, .5); }
+.page-index .home-hero h1 { text-shadow: 0 2px 4px rgba(8, 30, 60, .5), 0 0 26px rgba(8, 30, 60, .45); }
+/* home page only: blue sky above, sunrise glow at the horizon (owner's example, 2026-11-15) */
+.page-index .home-hero { background: #4B8DC4; }
+.page-index .hero-photo::after, .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 58% 34% at 50% 48%, rgba(10, 30, 60, .30) 0%, rgba(10, 30, 60, 0) 78%),
+    radial-gradient(ellipse 75% 48% at 50% 108%, rgba(255, 216, 128, .85) 0%, rgba(255, 190, 92, .48) 42%, rgba(255, 190, 92, 0) 76%),
+    linear-gradient(180deg, rgba(60, 148, 222, .66) 0%, rgba(112, 178, 228, .40) 36%, rgba(214, 200, 160, .28) 66%, rgba(242, 182, 92, .48) 100%);
+}
+@media (min-width: 900px) { .page-index .hero-photo::after {
+  background:
+    radial-gradient(ellipse 46% 32% at 50% 48%, rgba(10, 30, 60, .30) 0%, rgba(10, 30, 60, 0) 78%),
+    radial-gradient(ellipse 60% 50% at 50% 110%, rgba(255, 216, 128, .85) 0%, rgba(255, 190, 92, .48) 42%, rgba(255, 190, 92, 0) 76%),
+    linear-gradient(180deg, rgba(60, 148, 222, .66) 0%, rgba(112, 178, 228, .40) 36%, rgba(214, 200, 160, .28) 66%, rgba(242, 182, 92, .48) 100%);
+} }
+.page-index .home-hero .tagline, .page-index .hero-links a { text-shadow: 0 1px 3px rgba(10, 30, 60, .75), 0 0 18px rgba(10, 30, 60, .6); }
+.page-index .hero-links a { border-bottom-color: #fff; }
+/* home page only: the photo itself now carries the blue sky and the sunrise (sky recoloured in the image, towers untouched),
+   so no colour layer is laid over the towers; the text keeps a soft shadow for legibility */
+.page-index .hero-photo img { object-position: 50% 62%; }
+@media (min-width: 900px) { .page-index .hero-photo img { object-position: 50% 44%; } }
+.page-index .hero-photo::after, .page-index .hero-photo::after { background: none; }
+@media (min-width: 900px) { .page-index .hero-photo::after { background: none; } }
+.page-index .hero-kicker, .page-index .home-hero h1, .page-index .home-hero .tagline, .page-index .hero-links a {
+  text-shadow: 0 1px 2px rgba(5, 18, 40, .85), 0 0 10px rgba(5, 18, 40, .7), 0 0 26px rgba(5, 18, 40, .55);
+}
+/* home page only: back to the photo's own evening colours (owner, 2026-11-15) - no colour layer, text keeps its shadow */
