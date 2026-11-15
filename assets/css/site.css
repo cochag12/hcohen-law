@@ -290,6 +290,7 @@ svg.icon { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; st
 .people h2 a { color: var(--navy-900); text-decoration: none; }
 .people h2 a:hover { text-decoration: underline; }
 .people .role { color: var(--muted); font-size: .95rem; }
+.people .seniority { color: var(--muted); font-size: .9rem; }
 
 /* ---------- profile ---------- */
 .profile { display: grid; gap: 2rem; padding-block: 1rem 3rem; }
@@ -355,6 +356,8 @@ h1, h2, h3 { text-wrap: balance; }
 .notice { background: var(--soft); border: 1px solid var(--line); padding: .25rem 1rem; margin: 0 0 1rem; font-size: .95rem; }
 .notice summary { cursor: pointer; font-weight: 700; padding: .6rem 0; min-height: 2.75rem; }
 .notice ul { margin: 0 0 .75rem; }
+.notice p { margin: 0 0 .6rem; }
+.notice p:last-child { margin-bottom: .85rem; }
 .consent { display: flex; gap: .75rem; align-items: flex-start; margin-bottom: 1.25rem; }
 .consent input { width: 1.4rem; height: 1.4rem; margin-top: .2rem; accent-color: var(--navy-800); flex-shrink: 0; }
 .consent label { font-size: .98rem; }
@@ -732,3 +735,64 @@ html.a11y-contrast .contact-grid .field input, html.a11y-contrast .contact-grid 
   text-shadow: 0 1px 2px rgba(5, 18, 40, .85), 0 0 10px rgba(5, 18, 40, .7), 0 0 26px rgba(5, 18, 40, .55);
 }
 /* home page only: back to the photo's own evening colours (owner, 2026-11-15) - no colour layer, text keeps its shadow */
+/* home page only: the reference palette again - golden haze at the top, muted blue-grey in the middle, deep blue below (owner, 2026-11-15) */
+.page-index .home-hero { background: #1A3456; }
+.page-index .hero-photo::after, .page-index .hero-photo::after {
+  background: linear-gradient(180deg, rgba(150, 128, 82, .80) 0%, rgba(124, 114, 96, .56) 22%, rgba(66, 88, 114, .50) 52%, rgba(24, 50, 84, .84) 100%);
+}
+@media (min-width: 900px) { .page-index .hero-photo::after {
+  background: linear-gradient(180deg, rgba(150, 128, 82, .80) 0%, rgba(124, 114, 96, .56) 22%, rgba(66, 88, 114, .50) 52%, rgba(24, 50, 84, .84) 100%);
+} }
+.page-index .hero-kicker { color: #EBD196; text-shadow: 0 1px 3px rgba(40, 28, 8, .55), 0 0 16px rgba(40, 28, 8, .35); }
+.page-index .hero-ornament::before { background: linear-gradient(270deg, transparent, #EBD196); }
+.page-index .hero-ornament::after { background: linear-gradient(90deg, transparent, #EBD196); }
+.page-index .hero-ornament i { background: #EBD196; }
+/* home page only: Weinberg-style palette from the site's own global colours - navy #1C2B3E, dark #111A25,
+   gold #C3982C / light gold #D6B578 (owner, 2026-11-15) */
+.page-index .site-header { background: #1C2B3E; }
+@media (max-width: 860px) { .page-index .main-nav { background: #1C2B3E; } }
+.page-index .site-header::after { background: #D6B578; opacity: .6; }
+.page-index .main-nav a[aria-current="page"], .page-index .main-nav a.is-section { border-bottom-color: #D6B578; }
+.page-index .site-footer { background: #111A25; }
+.page-index .hero-kicker { color: #D6B578; }
+.page-index .hero-ornament::before { background: linear-gradient(270deg, transparent, #D6B578); }
+.page-index .hero-ornament::after { background: linear-gradient(90deg, transparent, #D6B578); }
+.page-index .hero-ornament i { background: #D6B578; }
+.page-index .band-dark { background: #1C2B3E; --muted: #C9CFD8; }
+.page-index .band-dark .area-list p, .page-index .band-dark .muted { color: #C9CFD8; }
+.page-index .band-dark .area-list li { border-bottom-color: rgba(214, 181, 120, .25); }
+.page-index .band-dark .more, .page-index .band-dark .area-list li::before { color: #D6B578; }
+.page-index .band-dark h2::after { background: #C3982C; }
+.page-index .home-intro h2::after, .page-index .home-pubs h2::after { background: #C3982C; }
+/* home page only: the owner's evening photo of the towers in its own colours (tenant sign retouched out), no colour layer */
+.page-index .hero-photo::after, .page-index .hero-photo::after { background: none; }
+@media (min-width: 900px) { .page-index .hero-photo::after { background: none; } }
+.page-index .hero-photo img { object-position: 50% 30%; }
+@media (min-width: 900px) { .page-index .hero-photo img { object-position: 50% 30%; } }
+.page-index .hero-kicker, .page-index .home-hero h1, .page-index .home-hero .tagline, .page-index .hero-links a {
+  text-shadow: 0 1px 2px rgba(5, 14, 32, .85), 0 0 10px rgba(5, 14, 32, .7), 0 0 26px rgba(5, 14, 32, .55);
+}
+
+/* Home page only: Weinberg-style navy tint on the hero photo (soft, 45%), darker header, lighter gold */
+.page-index .site-header { background: #101A25; }
+.page-index .site-header::after { background: #E2C793; }
+.page-index .home-hero { background: #101A25; }
+.page-index .hero-photo::after { content: ""; background: rgba(20, 44, 76, .45); }
+.page-index .hero-kicker { color: #E2C793; }
+.page-index .hero-ornament::before { background: linear-gradient(270deg, transparent, #E2C793); }
+.page-index .hero-ornament::after { background: linear-gradient(90deg, transparent, #E2C793); }
+.page-index .hero-ornament i { background: #E2C793; }
+
+/* Home page only: the whole photo in its own colours beside the text (no crop, no colour layer); on phones the photo sits above the text */
+.page-index .home-hero { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; min-height: 0; background: #101A25; }
+.page-index .hero-inner { grid-column: 1; grid-row: 1; padding-block: 3rem; }
+.page-index .hero-photo { grid-column: 2; grid-row: 1; position: relative; inset: auto; width: auto; height: clamp(32rem, 84vh, 52rem); aspect-ratio: 1080 / 1349; }
+.page-index .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.page-index .hero-photo::after { content: none; }
+.page-index .home-hero h1 { font-size: clamp(2.8rem, 5.4vw, 5.6rem); }
+.page-index .hero-kicker, .page-index .home-hero h1, .page-index .home-hero .tagline, .page-index .hero-links a { text-shadow: none; }
+@media (max-width: 899px) {
+  .page-index .home-hero { grid-template-columns: 1fr; }
+  .page-index .hero-photo { grid-column: 1; grid-row: 1; width: 100%; height: auto; }
+  .page-index .hero-inner { grid-row: 2; padding-block: 2.5rem 3rem; }
+}
