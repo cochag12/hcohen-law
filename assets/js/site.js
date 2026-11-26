@@ -189,6 +189,113 @@
     });
   }
 
+  /* ---- topic picker: the native <select> stays in the form (hidden) and keeps the value;
+     the visible control is a button + listbox drawn in the site's own design ---- */
+  document.querySelectorAll('select[data-picker], #f-topic').forEach(function (sel) {
+    var label = document.querySelector('label[for="' + sel.id + '"]');
+    var wrap = document.createElement('div');
+    wrap.className = 'picker';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'picker-btn';
+    btn.id = sel.id + '-btn';
+    btn.setAttribute('aria-haspopup', 'listbox');
+    btn.setAttribute('aria-expanded', 'false');
+    var list = document.createElement('ul');
+    list.className = 'picker-list';
+    list.id = sel.id + '-list';
+    list.setAttribute('role', 'listbox');
+    list.tabIndex = -1;
+    list.hidden = true;
+    btn.setAttribute('aria-controls', list.id);
+    if (label) {
+      label.id = label.id || sel.id + '-label';
+      label.setAttribute('for', btn.id);
+      btn.setAttribute('aria-labelledby', label.id + ' ' + btn.id + '-value');
+      list.setAttribute('aria-labelledby', label.id);
+    }
+    btn.innerHTML = '<span class="picker-value" id="' + btn.id + '-value"></span>' + icon('i-chevron').replace('class="icon"', 'class="icon picker-chev"');
+    var valueEl = btn.firstChild;
+    var opts = [].map.call(sel.options, function (o, i) {
+      var li = document.createElement('li');
+      li.id = sel.id + '-opt-' + i;
+      li.setAttribute('role', 'option');
+      li.textContent = o.text;
+      li.addEventListener('click', function () { choose(i); close(true); });
+      li.addEventListener('mousemove', function () { setActive(i); });
+      list.appendChild(li);
+      return li;
+    });
+    var active = 0;
+    function sync() {
+      var i = Math.max(0, sel.selectedIndex);
+      valueEl.textContent = sel.options[i] ? sel.options[i].text : '';
+      opts.forEach(function (li, k) { li.setAttribute('aria-selected', String(k === i)); });
+    }
+    function setActive(i) {
+      active = Math.max(0, Math.min(opts.length - 1, i));
+      opts.forEach(function (li, k) { li.classList.toggle('is-active', k === active); });
+      list.setAttribute('aria-activedescendant', opts[active].id);
+      var li = opts[active];
+      if (li.offsetTop < list.scrollTop) list.scrollTop = li.offsetTop;
+      else if (li.offsetTop + li.offsetHeight > list.scrollTop + list.clientHeight) list.scrollTop = li.offsetTop + li.offsetHeight - list.clientHeight;
+    }
+    function choose(i) {
+      if (sel.selectedIndex !== i) { sel.selectedIndex = i; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+      sync();
+    }
+    function open() {
+      if (!list.hidden) return;
+      list.hidden = false;
+      wrap.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+      setActive(Math.max(0, sel.selectedIndex));
+      list.focus();
+    }
+    function close(refocus) {
+      if (list.hidden) return;
+      list.hidden = true;
+      wrap.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      if (refocus) btn.focus();
+    }
+    btn.addEventListener('click', function () { if (list.hidden) open(); else close(true); });
+    btn.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
+    });
+    var typed = '', typedAt = 0;
+    list.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (k === 'ArrowDown') { e.preventDefault(); setActive(active + 1); }
+      else if (k === 'ArrowUp') { e.preventDefault(); setActive(active - 1); }
+      else if (k === 'Home' || k === 'PageUp') { e.preventDefault(); setActive(0); }
+      else if (k === 'End' || k === 'PageDown') { e.preventDefault(); setActive(opts.length - 1); }
+      else if (k === 'Enter' || k === ' ') { e.preventDefault(); choose(active); close(true); }
+      else if (k === 'Escape') { e.preventDefault(); close(true); }
+      else if (k === 'Tab') { choose(active); close(false); }
+      else if (k.length === 1) {
+        var now = Date.now(); typed = (now - typedAt > 700 ? '' : typed) + k; typedAt = now;
+        for (var n = 1; n <= opts.length; n++) {
+          var j = (active + n) % opts.length;
+          if (opts[j].textContent.indexOf(typed) === 0) { setActive(j); break; }
+        }
+      }
+    });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); });   /* keep focus on the list while clicking an option */
+    document.addEventListener('pointerdown', function (e) { if (!wrap.contains(e.target)) close(false); });
+    list.addEventListener('focusout', function (e) { if (!wrap.contains(e.relatedTarget)) close(false); });
+    sel.addEventListener('change', sync);
+    if (sel.form) sel.form.addEventListener('reset', function () { setTimeout(sync, 0); });
+    sel.classList.add('picker-native');
+    sel.tabIndex = -1;
+    sel.setAttribute('aria-hidden', 'true');
+    sel.parentNode.insertBefore(wrap, sel);
+    wrap.appendChild(btn);
+    wrap.appendChild(list);
+    wrap.appendChild(sel);
+    sync();
+  });
+
   /* ---- accessibility menu ---- */
   var a11yState = {};
   try { a11yState = JSON.parse(store.get('a11y') || '{}') || {}; } catch (e) { a11yState = {}; }
@@ -209,8 +316,9 @@
     '<button type="button" data-a="contrast">ניגודיות גבוהה</button>' +
     '<button type="button" data-a="links">הדגשת קישורים</button>' +
     '<button type="button" data-a="readable">גופן קריא</button>' +
+    '<button type="button" data-a="still">עצירת אנימציות</button>' +
     '<button type="button" data-a="close">סגירה</button></div>' +
-    '<div class="a11y-foot"><a href="' + (CFG.base || '') + 'accessibility.html">הצהרת נגישות</a><button type="button" data-a="reset">איפוס</button></div>';
+    '<div class="a11y-foot"><a href="' + (CFG.base || '') + 'legal/accessibility/">הצהרת נגישות</a><button type="button" data-a="reset">איפוס</button></div>';
   document.body.appendChild(a11yBtn); document.body.appendChild(panel);
   function syncPressed() {
     panel.querySelectorAll('[data-a]').forEach(function (b) {
@@ -251,7 +359,7 @@
     else if (choice !== 'no') {
       var bar = document.createElement('div');
       bar.className = 'consent-bar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'הסכמה לעוגיות');
-      bar.innerHTML = '<p>האתר משתמש בעוגיות ניתוח (Google Analytics) רק אם תאשרו. <a href="' + (CFG.base || '') + 'privacy.html">מדיניות הפרטיות</a></p><div class="btns"><button type="button" class="btn btn-outline" data-c="yes">אישור</button><button type="button" class="btn btn-outline" data-c="no">דחייה</button></div>';
+      bar.innerHTML = '<p>האתר משתמש בעוגיות ניתוח (Google Analytics) רק אם תאשרו. <a href="' + (CFG.base || '') + 'legal/privacy/">מדיניות הפרטיות</a></p><div class="btns"><button type="button" class="btn btn-outline" data-c="yes">אישור</button><button type="button" class="btn btn-outline" data-c="no">דחייה</button></div>';
       document.body.appendChild(bar);
       bar.addEventListener('click', function (e) {
         var b = e.target.closest('[data-c]'); if (!b) return;

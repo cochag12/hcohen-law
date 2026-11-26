@@ -1,0 +1,2 @@
+Icons in icons.svg: Phosphor Icons (https://phosphoricons.com), MIT License, Copyright (c) Phosphor Icons.
+A few remaining glyphs: Lucide (ISC License).
