@@ -748,8 +748,7 @@ html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animati
 .about-towers img { aspect-ratio: 3 / 4; }
 .page-about .prose > p:first-child { font-size: clamp(1.25rem, 2vw, 1.45rem); font-weight: 500; color: var(--navy); line-height: 1.6; }
 .page-about .prose > p { color: var(--ink); line-height: 1.85; }
-.page-about .prose > p:nth-child(3), .page-about .prose > p:nth-child(7) { margin-top: 44px; }
-.page-about .prose > p:nth-child(3)::before, .page-about .prose > p:nth-child(7)::before { content: ""; display: block; width: 40px; height: 3px; background: var(--gold); margin-bottom: 18px; }
+/* (26.11.2026) the gold dividers before paragraphs 3 and 7 belonged to the old heading-less about text; the new text has its own h2 sections */
 
 /* ---- practice-area pages: fewer boxes, one accent per block ---- */
 .rs-services li { border: 0; border-top: 1px solid var(--line); border-radius: 0; background: none; padding: 20px 0; }
@@ -1554,3 +1553,6 @@ html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animati
 }
 /* about: the two one-line statements */
 .prose p.pull { margin: 26px 0 30px; padding: 4px 0 4px 0; padding-inline-start: 20px; border-inline-start: 3px solid var(--gold); color: var(--navy); font-size: 1.15rem; font-weight: 700; line-height: 1.6; }
+/* home intro (owner 26.11.2026): every paragraph in the same plain style; only the closing line stands out, in bold */
+.page-index .intro p:first-of-type { color: var(--ink-2); font-size: inherit; line-height: 1.75; margin-bottom: 18px; }
+.page-index .intro p.intro-key { margin-top: 18px; color: var(--navy); font-size: 1.1rem; line-height: 1.6; }
